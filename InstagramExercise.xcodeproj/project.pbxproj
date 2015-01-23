@@ -30,6 +30,7 @@
 		A7D81F731A71B1C60093B935 /* InstagramCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F6B1A71B1C60093B935 /* InstagramCollectionViewController.m */; };
 		A7D81F771A71B2350093B935 /* InstagramService.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F761A71B2350093B935 /* InstagramService.m */; };
 		A7D81F7C1A71D9270093B935 /* InstagramLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F7B1A71D9270093B935 /* InstagramLoginViewController.m */; };
+		A7D81F801A7227540093B935 /* InstagramUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F7F1A7227540093B935 /* InstagramUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		A7D81F791A71B3D50093B935 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A7D81F7A1A71D9270093B935 /* InstagramLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramLoginViewController.h; sourceTree = "<group>"; };
 		A7D81F7B1A71D9270093B935 /* InstagramLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramLoginViewController.m; sourceTree = "<group>"; };
+		A7D81F7E1A7227540093B935 /* InstagramUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramUser.h; sourceTree = "<group>"; };
+		A7D81F7F1A7227540093B935 /* InstagramUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,7 @@
 				A7D81F781A71B34D0093B935 /* Constants */,
 				A7D81F5F1A71B1C60093B935 /* CustomViews */,
 				A7A0D32C1A714EA300814433 /* InstagramExercise */,
+				A7D81F7D1A7227400093B935 /* Model */,
 				A7D81F651A71B1C60093B935 /* Resources */,
 				A7D81F741A71B2080093B935 /* SharedInstance */,
 				A7D81F691A71B1C60093B935 /* ViewControllers */,
@@ -232,6 +236,16 @@
 			path = InstagramExercise/Constants;
 			sourceTree = "<group>";
 		};
+		A7D81F7D1A7227400093B935 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F7E1A7227540093B935 /* InstagramUser.h */,
+				A7D81F7F1A7227540093B935 /* InstagramUser.m */,
+			);
+			name = Model;
+			path = InstagramExercise/Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7D81F6C1A71B1C60093B935 /* CollectionViewCell.m in Sources */,
+				A7D81F801A7227540093B935 /* InstagramUser.m in Sources */,
 				A7D81F7C1A71D9270093B935 /* InstagramLoginViewController.m in Sources */,
 				A7A0D3371A714EA300814433 /* AppDelegate.m in Sources */,
 				A7A0D3331A714EA300814433 /* main.m in Sources */,

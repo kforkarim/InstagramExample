@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InstagramUser.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIWebViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) InstagramUser *user;
 @end

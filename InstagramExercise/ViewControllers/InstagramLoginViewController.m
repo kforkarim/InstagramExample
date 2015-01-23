@@ -9,6 +9,7 @@
 #import "InstagramLoginViewController.h"
 #import "InstagramService.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @interface InstagramLoginViewController ()
 
@@ -84,6 +85,20 @@
                 if (!error) {
                     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                     NSLog(@"result json: %@", jsonDict);
+                    
+                    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                    
+                    InstagramUser *user = [[InstagramUser alloc] init];
+                    user.accessToken = [NSString stringWithFormat:@"%@",[jsonDict valueForKey:@"access_token"]];
+                    user.bio = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"bio"]];
+                    user.fullName = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"full_name"]];
+                    user.igId = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"id"]];
+                    user.profilePictureURL = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"profile_picture"]];
+                    user.username = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"username"]];
+                    user.website = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"website"]];
+                    appDelegate.user = user;
+                    user = nil;
+                    
                 }
             }];
         }
