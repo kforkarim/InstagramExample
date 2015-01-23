@@ -40,6 +40,13 @@
     [self.collectionView registerNib:collectionCellNibThree forCellWithReuseIdentifier:@"CellThree"];    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationItem setHidesBackButton:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

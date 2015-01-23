@@ -7,6 +7,7 @@
 //
 
 #import "InstagramLoginViewController.h"
+#import "InstagramCollectionViewController.h"
 #import "InstagramService.h"
 #import "Constants.h"
 #import "AppDelegate.h"
@@ -99,6 +100,12 @@
                     appDelegate.user = user;
                     user = nil;
                     
+                    InstagramCollectionViewController *listVC =
+                    [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"InstagramCollectionViewController"];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.navigationController pushViewController:listVC animated:YES];
+                    });
                 }
             }];
         }
