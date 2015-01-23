@@ -12,12 +12,41 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jRC-BR-Gcj" kind="relationship" relationship="rootViewController" id="16w-Am-lZU"/>
+                        <segue destination="9KQ-FW-9ff" kind="relationship" relationship="rootViewController" id="ftT-Tn-fST"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFG-9l-ZtM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-248" y="78"/>
+            <point key="canvasLocation" x="-208" y="78"/>
+        </scene>
+        <!--Instagram Login View Controller-->
+        <scene sceneID="p0B-DJ-uZg">
+            <objects>
+                <viewController id="9KQ-FW-9ff" customClass="InstagramLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pj6-W3-j5p"/>
+                        <viewControllerLayoutGuide type="bottom" id="qSP-mm-LMH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y2R-M5-8dP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFh-0j-1wc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wcx-oN-Tb7"/>
+                    <connections>
+                        <outlet property="webView" destination="hFh-0j-1wc" id="BuB-T9-QAT"/>
+                        <segue destination="jRC-BR-Gcj" kind="push" id="SOl-3a-ZUz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0X-i7-IA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395" y="78"/>
         </scene>
         <!--Instagram Collection View Controller-->
         <scene sceneID="tZc-hc-1gW">
@@ -74,7 +103,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSZ-AG-9HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="155.5" y="78"/>
+            <point key="canvasLocation" x="1007" y="78"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

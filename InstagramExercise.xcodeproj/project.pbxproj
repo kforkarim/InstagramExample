@@ -20,14 +20,16 @@
 		A7A0D3481A714EA300814433 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A0D32A1A714EA300814433 /* UIKit.framework */; };
 		A7A0D3501A714EA300814433 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7A0D34E1A714EA300814433 /* InfoPlist.strings */; };
 		A7A0D3521A714EA300814433 /* InstagramExerciseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A0D3511A714EA300814433 /* InstagramExerciseTests.m */; };
-		A7A0D3601A71509E00814433 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A0D35F1A71509E00814433 /* CollectionViewCell.m */; };
-		A7A0D3621A7150C100814433 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7A0D3611A7150C100814433 /* CollectionViewCell.xib */; };
-		A7D81F4C1A71519C0093B935 /* InstagramCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F4B1A71519C0093B935 /* InstagramCollectionViewController.m */; };
-		A7D81F4E1A71532F0093B935 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F4D1A71532F0093B935 /* google.png */; };
-		A7D81F521A7158F70093B935 /* CollectionViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F4F1A7158F70093B935 /* CollectionViewCellTwo.xib */; };
-		A7D81F581A7159EB0093B935 /* CollectionViewCellThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F551A7159EB0093B935 /* CollectionViewCellThree.xib */; };
-		A7D81F5D1A716C820093B935 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F5B1A716C820093B935 /* test2.png */; };
-		A7D81F5E1A716C820093B935 /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F5C1A716C820093B935 /* test1.jpg */; };
+		A7D81F6C1A71B1C60093B935 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F611A71B1C60093B935 /* CollectionViewCell.m */; };
+		A7D81F6D1A71B1C60093B935 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F621A71B1C60093B935 /* CollectionViewCell.xib */; };
+		A7D81F6E1A71B1C60093B935 /* CollectionViewCellThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F631A71B1C60093B935 /* CollectionViewCellThree.xib */; };
+		A7D81F6F1A71B1C60093B935 /* CollectionViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F641A71B1C60093B935 /* CollectionViewCellTwo.xib */; };
+		A7D81F701A71B1C60093B935 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F661A71B1C60093B935 /* google.png */; };
+		A7D81F711A71B1C60093B935 /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F671A71B1C60093B935 /* test1.jpg */; };
+		A7D81F721A71B1C60093B935 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D81F681A71B1C60093B935 /* test2.png */; };
+		A7D81F731A71B1C60093B935 /* InstagramCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F6B1A71B1C60093B935 /* InstagramCollectionViewController.m */; };
+		A7D81F771A71B2350093B935 /* InstagramService.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F761A71B2350093B935 /* InstagramService.m */; };
+		A7D81F7C1A71D9270093B935 /* InstagramLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D81F7B1A71D9270093B935 /* InstagramLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,16 +60,21 @@
 		A7A0D34D1A714EA300814433 /* InstagramExerciseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InstagramExerciseTests-Info.plist"; sourceTree = "<group>"; };
 		A7A0D34F1A714EA300814433 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7A0D3511A714EA300814433 /* InstagramExerciseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagramExerciseTests.m; sourceTree = "<group>"; };
-		A7A0D35E1A71509E00814433 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
-		A7A0D35F1A71509E00814433 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
-		A7A0D3611A7150C100814433 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
-		A7D81F4A1A71519C0093B935 /* InstagramCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramCollectionViewController.h; sourceTree = "<group>"; };
-		A7D81F4B1A71519C0093B935 /* InstagramCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramCollectionViewController.m; sourceTree = "<group>"; };
-		A7D81F4D1A71532F0093B935 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
-		A7D81F4F1A7158F70093B935 /* CollectionViewCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellTwo.xib; sourceTree = "<group>"; };
-		A7D81F551A7159EB0093B935 /* CollectionViewCellThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellThree.xib; sourceTree = "<group>"; };
-		A7D81F5B1A716C820093B935 /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test2.png; sourceTree = "<group>"; };
-		A7D81F5C1A716C820093B935 /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		A7D81F601A71B1C60093B935 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		A7D81F611A71B1C60093B935 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		A7D81F621A71B1C60093B935 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		A7D81F631A71B1C60093B935 /* CollectionViewCellThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellThree.xib; sourceTree = "<group>"; };
+		A7D81F641A71B1C60093B935 /* CollectionViewCellTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCellTwo.xib; sourceTree = "<group>"; };
+		A7D81F661A71B1C60093B935 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
+		A7D81F671A71B1C60093B935 /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		A7D81F681A71B1C60093B935 /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test2.png; sourceTree = "<group>"; };
+		A7D81F6A1A71B1C60093B935 /* InstagramCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramCollectionViewController.h; sourceTree = "<group>"; };
+		A7D81F6B1A71B1C60093B935 /* InstagramCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramCollectionViewController.m; sourceTree = "<group>"; };
+		A7D81F751A71B2350093B935 /* InstagramService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramService.h; sourceTree = "<group>"; };
+		A7D81F761A71B2350093B935 /* InstagramService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramService.m; sourceTree = "<group>"; };
+		A7D81F791A71B3D50093B935 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		A7D81F7A1A71D9270093B935 /* InstagramLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramLoginViewController.h; sourceTree = "<group>"; };
+		A7D81F7B1A71D9270093B935 /* InstagramLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +104,12 @@
 		A7A0D31A1A714EA300814433 = {
 			isa = PBXGroup;
 			children = (
+				A7D81F781A71B34D0093B935 /* Constants */,
+				A7D81F5F1A71B1C60093B935 /* CustomViews */,
 				A7A0D32C1A714EA300814433 /* InstagramExercise */,
+				A7D81F651A71B1C60093B935 /* Resources */,
+				A7D81F741A71B2080093B935 /* SharedInstance */,
+				A7D81F691A71B1C60093B935 /* ViewControllers */,
 				A7A0D34B1A714EA300814433 /* InstagramExerciseTests */,
 				A7A0D3251A714EA300814433 /* Frameworks */,
 				A7A0D3241A714EA300814433 /* Products */,
@@ -130,13 +142,6 @@
 				A7A0D3351A714EA300814433 /* AppDelegate.h */,
 				A7A0D3361A714EA300814433 /* AppDelegate.m */,
 				A7A0D3381A714EA300814433 /* Main.storyboard */,
-				A7A0D35E1A71509E00814433 /* CollectionViewCell.h */,
-				A7A0D35F1A71509E00814433 /* CollectionViewCell.m */,
-				A7A0D3611A7150C100814433 /* CollectionViewCell.xib */,
-				A7D81F4F1A7158F70093B935 /* CollectionViewCellTwo.xib */,
-				A7D81F551A7159EB0093B935 /* CollectionViewCellThree.xib */,
-				A7D81F4A1A71519C0093B935 /* InstagramCollectionViewController.h */,
-				A7D81F4B1A71519C0093B935 /* InstagramCollectionViewController.m */,
 				A7A0D33E1A714EA300814433 /* Images.xcassets */,
 				A7A0D32D1A714EA300814433 /* Supporting Files */,
 			);
@@ -146,9 +151,6 @@
 		A7A0D32D1A714EA300814433 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A7D81F5B1A716C820093B935 /* test2.png */,
-				A7D81F5C1A716C820093B935 /* test1.jpg */,
-				A7D81F4D1A71532F0093B935 /* google.png */,
 				A7A0D32E1A714EA300814433 /* InstagramExercise-Info.plist */,
 				A7A0D32F1A714EA300814433 /* InfoPlist.strings */,
 				A7A0D3321A714EA300814433 /* main.m */,
@@ -173,6 +175,61 @@
 				A7A0D34E1A714EA300814433 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7D81F5F1A71B1C60093B935 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F601A71B1C60093B935 /* CollectionViewCell.h */,
+				A7D81F611A71B1C60093B935 /* CollectionViewCell.m */,
+				A7D81F621A71B1C60093B935 /* CollectionViewCell.xib */,
+				A7D81F631A71B1C60093B935 /* CollectionViewCellThree.xib */,
+				A7D81F641A71B1C60093B935 /* CollectionViewCellTwo.xib */,
+			);
+			name = CustomViews;
+			path = InstagramExercise/CustomViews;
+			sourceTree = "<group>";
+		};
+		A7D81F651A71B1C60093B935 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F661A71B1C60093B935 /* google.png */,
+				A7D81F671A71B1C60093B935 /* test1.jpg */,
+				A7D81F681A71B1C60093B935 /* test2.png */,
+			);
+			name = Resources;
+			path = InstagramExercise/Resources;
+			sourceTree = "<group>";
+		};
+		A7D81F691A71B1C60093B935 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F6A1A71B1C60093B935 /* InstagramCollectionViewController.h */,
+				A7D81F6B1A71B1C60093B935 /* InstagramCollectionViewController.m */,
+				A7D81F7A1A71D9270093B935 /* InstagramLoginViewController.h */,
+				A7D81F7B1A71D9270093B935 /* InstagramLoginViewController.m */,
+			);
+			name = ViewControllers;
+			path = InstagramExercise/ViewControllers;
+			sourceTree = "<group>";
+		};
+		A7D81F741A71B2080093B935 /* SharedInstance */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F751A71B2350093B935 /* InstagramService.h */,
+				A7D81F761A71B2350093B935 /* InstagramService.m */,
+			);
+			name = SharedInstance;
+			path = InstagramExercise/SharedInstance;
+			sourceTree = "<group>";
+		};
+		A7D81F781A71B34D0093B935 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A7D81F791A71B3D50093B935 /* Constants.h */,
+			);
+			name = Constants;
+			path = InstagramExercise/Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,14 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7A0D33F1A714EA300814433 /* Images.xcassets in Resources */,
-				A7D81F521A7158F70093B935 /* CollectionViewCellTwo.xib in Resources */,
+				A7D81F711A71B1C60093B935 /* test1.jpg in Resources */,
+				A7D81F6F1A71B1C60093B935 /* CollectionViewCellTwo.xib in Resources */,
 				A7A0D3311A714EA300814433 /* InfoPlist.strings in Resources */,
-				A7A0D3621A7150C100814433 /* CollectionViewCell.xib in Resources */,
-				A7D81F4E1A71532F0093B935 /* google.png in Resources */,
+				A7D81F6D1A71B1C60093B935 /* CollectionViewCell.xib in Resources */,
 				A7A0D33A1A714EA300814433 /* Main.storyboard in Resources */,
-				A7D81F5D1A716C820093B935 /* test2.png in Resources */,
-				A7D81F581A7159EB0093B935 /* CollectionViewCellThree.xib in Resources */,
-				A7D81F5E1A716C820093B935 /* test1.jpg in Resources */,
+				A7D81F701A71B1C60093B935 /* google.png in Resources */,
+				A7D81F6E1A71B1C60093B935 /* CollectionViewCellThree.xib in Resources */,
+				A7D81F721A71B1C60093B935 /* test2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,10 +335,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D81F6C1A71B1C60093B935 /* CollectionViewCell.m in Sources */,
+				A7D81F7C1A71D9270093B935 /* InstagramLoginViewController.m in Sources */,
 				A7A0D3371A714EA300814433 /* AppDelegate.m in Sources */,
 				A7A0D3331A714EA300814433 /* main.m in Sources */,
-				A7A0D3601A71509E00814433 /* CollectionViewCell.m in Sources */,
-				A7D81F4C1A71519C0093B935 /* InstagramCollectionViewController.m in Sources */,
+				A7D81F731A71B1C60093B935 /* InstagramCollectionViewController.m in Sources */,
+				A7D81F771A71B2350093B935 /* InstagramService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
