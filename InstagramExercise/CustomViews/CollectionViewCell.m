@@ -8,14 +8,21 @@
 
 #import "CollectionViewCell.h"
 
+@interface CollectionViewCell ()
+
+@end
+
 @implementation CollectionViewCell
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
+    
     if (self) {
-        // Initialization code
+        
+        
     }
+    
     return self;
 }
 
@@ -27,5 +34,6 @@
     // Drawing code
 }
 */
+
 
 @end

@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "InstagramSelfie.h"
 #import "UIImageView+WebCache.h"
+#import <objc/runtime.h>
 
 @interface InstagramCollectionViewController ()
 
@@ -183,6 +184,51 @@
     }
     
     return _selfieArray;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CollectionViewCell* cell = (CollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    UIImageView* iv = cell.imageView;
+    
+    UIImageView* ivExpand = [[UIImageView alloc] initWithImage: iv.image];
+    ivExpand.contentMode = iv.contentMode;
+    ivExpand.frame = [self.view convertRect: iv.frame fromView: iv.superview];
+    ivExpand.userInteractionEnabled = YES;
+    ivExpand.clipsToBounds = YES;
+    
+    objc_setAssociatedObject( ivExpand,
+                             "original_frame",
+                             [NSValue valueWithCGRect: ivExpand.frame],
+                             OBJC_ASSOCIATION_RETAIN);
+    
+    [UIView transitionWithView: self.view
+                      duration: 1.0
+                       options: UIViewAnimationOptionAllowAnimatedContent
+                    animations:^{
+                        
+                        [self.view addSubview: ivExpand];
+                        ivExpand.frame = self.view.bounds;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector( onTap: )];
+                        [ivExpand addGestureRecognizer: tgr];
+                    }];
+}
+
+- (void)onTap:(UITapGestureRecognizer*) tgr
+{
+    [UIView animateWithDuration: 1.0
+                     animations:^{
+                         
+                         tgr.view.frame = [objc_getAssociatedObject( tgr.view,
+                                                                    "original_frame" ) CGRectValue];
+                     } completion:^(BOOL finished) {
+                         
+                         [tgr.view removeFromSuperview];
+                     }];
 }
 
 @end

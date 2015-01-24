@@ -15,7 +15,7 @@
 @interface InstagramLoginViewController ()
 
 @property (nonatomic, strong) NSString *code;
-
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 @end
 
 @implementation InstagramLoginViewController
@@ -25,6 +25,14 @@
     // Do any additional setup after loading the view.
     self.webView.delegate = self;
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://instagram.com/oauth/authorize/?client_id=ec3174198b9348fe8678b7826c9e5137&redirect_uri=instagramExample://&response_type=code"]]];
+    
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.indicatorView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    
+    [self.view addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+    [self.indicatorView setHidden:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +57,11 @@
 }
 */
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.indicatorView setHidden:NO];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"didFinish: %@; stillLoading: %@", [[webView request]URL],
@@ -56,6 +69,8 @@
     
     NSString *currentURL = [_webView stringByEvaluatingJavaScriptFromString:@"window.location.href"];
     NSLog(@"%@",currentURL);
+    
+    [self.indicatorView setHidden:YES];
 }
 
 
