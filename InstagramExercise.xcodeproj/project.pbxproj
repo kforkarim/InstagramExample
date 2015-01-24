@@ -236,8 +236,8 @@
 				A7D81F601A71B1C60093B935 /* CollectionViewCell.h */,
 				A7D81F611A71B1C60093B935 /* CollectionViewCell.m */,
 				A7D81F621A71B1C60093B935 /* CollectionViewCell.xib */,
-				A7D81F631A71B1C60093B935 /* CollectionViewCellThree.xib */,
 				A7D81F641A71B1C60093B935 /* CollectionViewCellTwo.xib */,
+				A7D81F631A71B1C60093B935 /* CollectionViewCellThree.xib */,
 			);
 			name = CustomViews;
 			path = InstagramExercise/CustomViews;
