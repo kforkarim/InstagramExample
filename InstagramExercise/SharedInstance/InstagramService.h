@@ -20,4 +20,7 @@
 - (void)getAccessToken:(NSString *)parameters
              completed:(void (^)(NSData *data, NSURLResponse *response, NSError *err))resp;
 
+- (void)getTagContent:(NSString*)accessToken
+               completed:(void (^)(NSData *data, NSURLResponse *response, NSError *err))resp;
+
 @end

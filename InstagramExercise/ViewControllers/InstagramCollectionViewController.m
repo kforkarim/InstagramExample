@@ -8,8 +8,14 @@
 
 #import "InstagramCollectionViewController.h"
 #import "CollectionViewCell.h"
+#import "InstagramService.h"
+#import "AppDelegate.h"
+#import "InstagramSelfie.h"
+#import "UIImageView+WebCache.h"
 
 @interface InstagramCollectionViewController ()
+
+@property (nonatomic, strong) NSMutableArray *selfieArray;
 
 @end
 
@@ -45,6 +51,28 @@
     [super viewWillAppear:animated];
     
     [self.navigationItem setHidesBackButton:YES];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    InstagramService *service = [InstagramService sharedInstance];
+    [service getTagContent:appDelegate.user.accessToken completed:^(NSData *data, NSURLResponse *response, NSError *err) {
+        
+        NSLog(@"%@",response);
+        NSError *error;
+        
+        if (!err) {
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"result json: %@", jsonDict);
+            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self loadSelfieArrayWithLowResolutionImageURL:jsonDict];
+                
+                //Reload data once content is being downloaded.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData];
+                });
+            });
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +101,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return [self.selfieArray count];
 }
 
 // The cell that is returned must be retrieved from a call to - dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -107,29 +135,54 @@
 
 - (CollectionViewCell*)collectionViewCell:(UICollectionView*)collectionView IndexPath:(NSIndexPath*)indexPath
 {
+    CollectionViewCell *cell;
+    InstagramSelfie *selfie = (InstagramSelfie*)[self.selfieArray objectAtIndex:indexPath.row];
     
     int i = indexPath.row % 3;
     
     if (i == 0 ) {
-        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellOne" forIndexPath:indexPath];
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"google.png"]];
-        return cell;
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellOne" forIndexPath:indexPath];
     }
     
     else if (i == 1) {
-        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellTwo" forIndexPath:indexPath];
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"test1.jpg"]];
-        return cell;
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellTwo" forIndexPath:indexPath];
     }
     
     
     else if (i == 2) {
-        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellThree" forIndexPath:indexPath];
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"test2.png"]];
-        return cell;
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellThree" forIndexPath:indexPath];
     }
+    
+    // Here we use the new provided setImageWithURL: method to load the web image
+    [cell.imageView sd_setImageWithURL:selfie.selfieURL
+                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    
+    return cell;
+}
 
-    return nil;
+- (void)loadSelfieArrayWithLowResolutionImageURL:(NSDictionary*)jsonContent
+{
+    NSArray *data = [jsonContent valueForKey:@"data"];
+    
+    for (NSDictionary *contents in data) {
+        
+        NSString *lowResolution = [[[contents valueForKey:@"images"] valueForKey:@"low_resolution"] valueForKey:@"url"];
+        InstagramSelfie *selfie = [[InstagramSelfie alloc] init];
+        selfie.selfieURL = [NSURL URLWithString:lowResolution];
+        [self.selfieArray addObject:selfie];
+        
+    }
+    
+    NSLog(@"%@",self.selfieArray);
+}
+
+- (NSMutableArray*)selfieArray
+{
+    if (!_selfieArray) {
+        _selfieArray = [[NSMutableArray alloc] init];
+    }
+    
+    return _selfieArray;
 }
 
 @end

@@ -48,14 +48,28 @@ static InstagramService *_sharedInstance = nil;
     [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
 
     [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        // Do your stuff...
+
         if (resp) {
             resp(data,response,error);
         }
     }] resume];
 }
 
+- (void)getTagContent:(NSString *)accessToken
+             completed:(void (^)(NSData *data, NSURLResponse *response, NSError *err))resp
+{
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/v1/tags/selfie/media/recent?access_token=%@",accessToken]]];
+    [request setHTTPMethod:@"GET"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
-
+        if (resp) {
+            resp(data,response,error);
+        }
+    }] resume];
+}
 
 @end
