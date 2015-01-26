@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.webView.delegate = self;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://instagram.com/oauth/authorize/?client_id=ec3174198b9348fe8678b7826c9e5137&redirect_uri=instagramExample://&response_type=code"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=code",kURL,kCLIENTID,kREDIRECTURI]]]];
     
     self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.indicatorView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
@@ -42,7 +42,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
     [super viewDidAppear:animated];
     
 }
@@ -64,22 +63,12 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"didFinish: %@; stillLoading: %@", [[webView request]URL],
-          (webView.loading?@"YES":@"NO"));
-    
-    NSString *currentURL = [_webView stringByEvaluatingJavaScriptFromString:@"window.location.href"];
-    NSLog(@"%@",currentURL);
-    
     [self.indicatorView setHidden:YES];
 }
 
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"didFail: %@; stillLoading: %@", [[webView request]URL],
-          (webView.loading?@"YES":@"NO"));
-    NSLog(@"%@",[error userInfo]);
-    
     NSDictionary *info = [error userInfo];
     
     if (info) {
@@ -88,35 +77,23 @@
             //We got the transaction complete
             NSString *codeInfo = [info valueForKey:@"NSErrorFailingURLStringKey"];
             self.code = [NSString stringWithFormat:@"%@",[codeInfo stringByReplacingOccurrencesOfString:@"instagramexample:?code=" withString:@""]];
-            NSLog(@"the code: %@",self.code);
             
             InstagramService *instagramService = [InstagramService sharedInstance];
-            NSString *parameters = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=%@&redirect_uri=%@&code=%@",clientId,clientSecret,grantType,redirectURI,self.code];
+            NSString *parameters = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=%@&redirect_uri=%@&code=%@",kCLIENTID,kCLIENDSECRET,kGRANTTYPE,kREDIRECTURI,self.code];
 
             [instagramService getAccessToken:parameters completed:^(NSData *data, NSURLResponse *response, NSError *err) {
                 
-                NSLog(@"%@",response);
                 NSError* error;
                 
                 if (!error) {
+                    
                     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                    NSLog(@"result json: %@", jsonDict);
-                    
                     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                    
-                    InstagramUser *user = [[InstagramUser alloc] init];
-                    user.accessToken = [NSString stringWithFormat:@"%@",[jsonDict valueForKey:@"access_token"]];
-                    user.bio = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"bio"]];
-                    user.fullName = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"full_name"]];
-                    user.igId = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"id"]];
-                    user.profilePictureURL = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"profile_picture"]];
-                    user.username = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"username"]];
-                    user.website = [NSString stringWithFormat:@"%@",[[jsonDict valueForKey:@"user"] valueForKey:@"website"]];
+                    InstagramUser *user = [[InstagramUser alloc] initWithUser:jsonDict];
                     appDelegate.user = user;
                     user = nil;
                     
-                    InstagramCollectionViewController *listVC =
-                    [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"InstagramCollectionViewController"];
+                    InstagramCollectionViewController *listVC = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"InstagramCollectionViewController"];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.navigationController pushViewController:listVC animated:YES];

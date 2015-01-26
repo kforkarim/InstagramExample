@@ -58,12 +58,10 @@
     InstagramService *service = [InstagramService sharedInstance];
     [service getTagContent:appDelegate.user.accessToken completed:^(NSData *data, NSURLResponse *response, NSError *err) {
         
-        NSLog(@"%@",response);
         NSError *error;
         
         if (!err) {
             NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"result json: %@", jsonDict);
             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self loadSelfieArrayWithLowResolutionImageURL:jsonDict];
                 
@@ -108,8 +106,6 @@
 // The cell that is returned must be retrieved from a call to - dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%li",indexPath.row % 3);
-    
     CollectionViewCell *cell = [self collectionViewCell:collectionView IndexPath:indexPath];
     if (cell)
         return cell;
@@ -138,25 +134,19 @@
 {
     CollectionViewCell *cell;
     InstagramSelfie *selfie = (InstagramSelfie*)[self.selfieArray objectAtIndex:indexPath.row];
-    
     int i = indexPath.row % 3;
     
-    if (i == 0 ) {
+    if (i == 0 )
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellOne" forIndexPath:indexPath];
-    }
-    
-    else if (i == 1) {
+
+    else if (i == 1)
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellTwo" forIndexPath:indexPath];
-    }
-    
-    
-    else if (i == 2) {
+
+    else if (i == 2)
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellThree" forIndexPath:indexPath];
-    }
     
     // Here we use the new provided setImageWithURL: method to load the web image
-    [cell.imageView sd_setImageWithURL:selfie.selfieURL
-                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [cell.imageView sd_setImageWithURL:selfie.selfieURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     return cell;
 }
@@ -165,16 +155,18 @@
 {
     NSArray *data = [jsonContent valueForKey:@"data"];
     
-    for (NSDictionary *contents in data) {
+    if (data && [data count] > 0) {
         
-        NSString *lowResolution = [[[contents valueForKey:@"images"] valueForKey:@"low_resolution"] valueForKey:@"url"];
-        InstagramSelfie *selfie = [[InstagramSelfie alloc] init];
-        selfie.selfieURL = [NSURL URLWithString:lowResolution];
-        [self.selfieArray addObject:selfie];
-        
+        for (NSDictionary *contents in data) {
+            
+            NSString *lowResolution = [[[contents valueForKey:@"images"] valueForKey:@"low_resolution"] valueForKey:@"url"];
+            InstagramSelfie *selfie = [[InstagramSelfie alloc] init];
+            if (lowResolution) {
+                selfie.selfieURL = [NSURL URLWithString:lowResolution];
+                [self.selfieArray addObject:selfie];
+            }
+        }
     }
-    
-    NSLog(@"%@",self.selfieArray);
 }
 
 - (NSMutableArray*)selfieArray
@@ -190,44 +182,36 @@
 {
     CollectionViewCell* cell = (CollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
     
-    UIImageView* iv = cell.imageView;
+    UIImageView *cellImageView = cell.imageView;
+    UIImageView *expandableImageView = [[UIImageView alloc] initWithImage: cellImageView.image];
+    expandableImageView.contentMode = cellImageView.contentMode;
+    expandableImageView.frame = [self.view convertRect: cellImageView.frame fromView: cellImageView.superview];
+    expandableImageView.userInteractionEnabled = YES;
+    expandableImageView.clipsToBounds = YES;
     
-    UIImageView* ivExpand = [[UIImageView alloc] initWithImage: iv.image];
-    ivExpand.contentMode = iv.contentMode;
-    ivExpand.frame = [self.view convertRect: iv.frame fromView: iv.superview];
-    ivExpand.userInteractionEnabled = YES;
-    ivExpand.clipsToBounds = YES;
+    objc_setAssociatedObject(expandableImageView,"original_frame",[NSValue valueWithCGRect:expandableImageView.frame],OBJC_ASSOCIATION_RETAIN);
     
-    objc_setAssociatedObject( ivExpand,
-                             "original_frame",
-                             [NSValue valueWithCGRect: ivExpand.frame],
-                             OBJC_ASSOCIATION_RETAIN);
-    
-    [UIView transitionWithView: self.view
-                      duration: 1.0
-                       options: UIViewAnimationOptionAllowAnimatedContent
+    [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationOptionAllowAnimatedContent
                     animations:^{
-                        
-                        [self.view addSubview: ivExpand];
-                        ivExpand.frame = self.view.bounds;
-                        
-                    } completion:^(BOOL finished) {
-                        
-                        UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector( onTap: )];
-                        [ivExpand addGestureRecognizer: tgr];
+                        [self.navigationController.view addSubview:expandableImageView];
+                        expandableImageView.frame = self.view.bounds;
+                    }
+                    completion:^(BOOL finished) {
+                        UITapGestureRecognizer *imageViewGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(onTap:)];
+                        [expandableImageView addGestureRecognizer:imageViewGesture];
                     }];
 }
 
-- (void)onTap:(UITapGestureRecognizer*) tgr
+- (void)onTap:(UITapGestureRecognizer*)imageViewGesture
 {
-    [UIView animateWithDuration: 1.0
+    [UIView animateWithDuration:0.5
                      animations:^{
-                         
-                         tgr.view.frame = [objc_getAssociatedObject( tgr.view,
-                                                                    "original_frame" ) CGRectValue];
-                     } completion:^(BOOL finished) {
-                         
-                         [tgr.view removeFromSuperview];
+                         imageViewGesture.view.frame = [objc_getAssociatedObject(imageViewGesture.view,"original_frame") CGRectValue];
+                     }
+                     completion:^(BOOL finished) {
+                         [imageViewGesture.view removeFromSuperview];
                      }];
 }
 

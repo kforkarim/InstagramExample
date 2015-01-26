@@ -18,4 +18,6 @@
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *website;
 
+- (instancetype)initWithUser:(NSDictionary*)user;
+
 @end

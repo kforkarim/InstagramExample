@@ -42,7 +42,7 @@ static InstagramService *_sharedInstance = nil;
 {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/access_token",kURL]]];
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
@@ -60,7 +60,7 @@ static InstagramService *_sharedInstance = nil;
 {
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/v1/tags/selfie/media/recent?access_token=%@",accessToken]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/v1/tags/selfie/media/recent?access_token=%@",kURL,accessToken]]];
     [request setHTTPMethod:@"GET"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
